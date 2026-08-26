@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <title>CRM - Учет клиентов</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <div class="crm-container">
+      <!-- Статистика -->
+      <div class="stats">
+        <p>Всего: <span id="totalCount">0</span></p>
+        <p>Активных: <span id="activeCount">0</span></p>
+        <p>Неактивных: <span id="inactiveCount">0</span></p>
+      </div>
+
+      <!-- Форма добавления -->
+      <form class="add-form" id="addForm">
+        <div class="form-group">
+          <label for="username">Имя</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Иван Петров"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="ivan@mail.ru"
+            required
+          />
+        </div>
+        <button type="submit" class="add-btn">Добавить</button>
+      </form>
+
+      <!-- Фильтры -->
+      <div class="filters">
+        <button class="filter-btn active" data-filter="all">Все</button>
+        <button class="filter-btn" data-filter="active">Активные</button>
+        <button class="filter-btn" data-filter="inactive">Неактивные</button>
+      </div>
+
+      <!-- Список пользователей -->
+      <div class="users-list" id="usersList">
+        <p class="empty-message">Нет клиентов. Добавьте первого!</p>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="editModal" style="display: none">
+      <div class="modal">
+        <h2 class="modal-title">✏️ <span>Редактировать клиента</span></h2>
+        <div class="form-group">
+          <label for="editName">Имя</label>
+          <input type="text" id="editName" placeholder="Иван Петров" />
+        </div>
+        <div class="form-group">
+          <label for="editEmail">Email</label>
+          <input type="email" id="editEmail" placeholder="ivan@mail.ru" />
+        </div>
+        <div class="form-group">
+          <label for="editStatus">Статус</label>
+          <select id="editStatus">
+            <option value="active">🟢 Активный</option>
+            <option value="inactive">🔴 Неактивный</option>
+          </select>
+        </div>
+        <div class="modal-actions">
+          <button class="save-btn" id="saveEditBtn">💾 Сохранить</button>
+          <button class="cancel-btn" id="closeEditBtn">❌ Отмена</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Модалка подтверждения удаления -->
+    <div class="modal-overlay" id="deleteModal">
+      <div class="modal modal-small">
+        <button class="modal-close" id="closeDeleteModalBtn">✕</button>
+
+        <div class="delete-icon">🗑️</div>
+        <h2 class="modal-title">Удалить клиента?</h2>
+        <p class="modal-subtitle" id="deleteMessage">
+          Вы уверены, что хотите удалить клиента?
+        </p>
+
+        <div class="modal-actions">
+          <button class="btn-danger" id="confirmDeleteBtn">🗑️ Удалить</button>
+          <button class="cancel-btn" id="cancelDeleteBtn">❌ Отмена</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== ВАЖНО: добавляем type="module" ===== -->
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
